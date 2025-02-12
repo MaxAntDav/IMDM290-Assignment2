@@ -2,6 +2,8 @@ My prject consists of a pulsing heart that changes colors every second (That is 
 
 <img width="1348" alt="Screenshot 2025-02-12 at 3 01 42 PM" src="https://github.com/user-attachments/assets/cd605783-3519-493f-b25b-0900d09e318a" />
 
+https://github.com/user-attachments/assets/fe54e6f2-4538-4148-bed7-675b42e75456
+
 Here is the image of the project and below is the code and Unity Package.
 
 VS Code:
