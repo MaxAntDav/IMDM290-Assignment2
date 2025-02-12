@@ -361,7 +361,6 @@
 -analyzer:"Library/PackageCache/com.unity.collab-proxy@2.6.0/Lib/Editor/Unity.Plastic.Newtonsoft.Json.dll"
 -analyzer:"Library/PackageCache/com.unity.collab-proxy@2.6.0/Lib/Editor/unityplastic.dll"
 "Assets/Scripts/HeartBeat.cs"
-"Assets/Scripts/HeartSpawner.cs"
 -langversion:9.0
 /deterministic
 /optimize+

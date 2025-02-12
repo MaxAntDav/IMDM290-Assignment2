@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/HeartBeat.cs" />
-    <Compile Include="Assets/Scripts/HeartSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class HeartGenerator : MonoBehaviour
 {
-    public GameObject spherePrefab; // Assign a sphere prefab in the Inspector
-    public int numPoints = 100; // Number of spheres in the heart
-    public float scale = 0.3f; // Size of the spheres
-    public float spacing = 2.0f; // Adjust spacing for better shape
-    private GameObject[] spheres; // Array to store spheres
-    private float colorLerpTime = 0f; // Time for color lerp
+    public GameObject spherePrefab; //Assigns a sphere.
+    public int numPoints = 100; //Total number of spheres in the heart.
+    public float scale = 0.3f; //Size of the spheres.
+    public float spacing = 2.0f; //Adjusts sphere spacing.
+    private GameObject[] spheres; //An array that stores the spheres.
+    private float colorDuration = 0f; //Duration of heart color.
 
     void Start()
     {
-        spheres = new GameObject[numPoints]; // Initialize array
+        spheres = new GameObject[numPoints]; //Initializes array.
         GenerateHeartShape();
     }
 
@@ -25,46 +25,48 @@ public class HeartGenerator : MonoBehaviour
     {
         for (int i = 0; i < numPoints; i++)
         {
-            float t = Mathf.PI * 2 * i / numPoints; // Spread points evenly
+            float t = Mathf.PI * 2 * i / numPoints; //Spreads the points.
 
             float x = Mathf.Sqrt(2) * Mathf.Pow(Mathf.Sin(t), 3);
-            float y = -Mathf.Pow(Mathf.Cos(t), 3) - Mathf.Pow(Mathf.Cos(t), 2) + 2 * Mathf.Cos(t);
+            float y = -Mathf.Pow(Mathf.Cos(t), 3) - Mathf.Pow(Mathf.Cos(t), 2) + 2 * Mathf.Cos(t); //Creates the heart shape.
 
             Vector3 position = new Vector3(x * spacing, y * spacing, 0);
             GameObject sphere = Instantiate(spherePrefab, position, Quaternion.identity);
             sphere.transform.localScale = Vector3.one * scale;
-            sphere.transform.parent = transform; // Parent to keep hierarchy clean
+            sphere.transform.parent = transform; //Parent to keep hierarchy clean.
 
-            // Assign the sphere to the array
+            //Assign the sphere to the array.
             spheres[i] = sphere;
 
-            // Set initial color to red
+            //Sets the starting color to red.
             sphere.GetComponent<Renderer>().material.color = Color.red;
         }
     }
 
     void PulseEffect()
     {
-        float scaleFactor = 1.0f + Mathf.Sin(Time.time * Mathf.PI) * 0.1f; // Pulsating effect every second
+        float scaleFactor = 1.0f + Mathf.Sin(Time.time * Mathf.PI) * 0.1f; //Creates a pulsing effect every second.
         transform.localScale = Vector3.one * scaleFactor;
     }
 
     void ChangeColor()
     {
-        colorLerpTime += Time.deltaTime;
-        float t = (Mathf.Sin(colorLerpTime * Mathf.PI) + 1) / 2; // Oscillates between 0 and 1 every second
+        colorDuration += Time.deltaTime;
+        float t = (Mathf.Sin(colorDuration * Mathf.PI) + 1) / 2; //Changes between 0 and 1 every second.
 
         Color red = Color.red;
-        Color pink = new Color(1f, 0.6f, 0.8f); // Custom pink color
-
-        Color lerpedColor = Color.Lerp(pink, red, t);
+        Color pink = new Color(1f, 0.6f, 0.8f); //Pink.
+        Color colorChange = Color.Lerp(pink, red, t);
 
         foreach (GameObject sphere in spheres)
         {
             if (sphere != null)
             {
-                sphere.GetComponent<Renderer>().material.color = lerpedColor;
+                sphere.GetComponent<Renderer>().material.color = colorChange;
             }
         }
     }
 }
+
+
+
